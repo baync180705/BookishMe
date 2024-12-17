@@ -12,7 +12,8 @@ class BookSearchPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Search Books"),
+        title: const Text("Search Books", style: TextStyle(fontWeight: FontWeight.bold),),
+        backgroundColor: Colors.amber,
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
@@ -56,6 +57,8 @@ class __SearchBarState extends State<_SearchBar> {
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
         ),
+        filled: true,
+        fillColor: Colors.grey[200],
       ),
     );
   }

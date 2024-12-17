@@ -33,7 +33,7 @@ class _HomeScreenViewState extends State<HomeScreenView> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text("Discover Books"),
+          title: const Text("Discover Books", style: TextStyle(fontWeight: FontWeight.bold),),
           backgroundColor: Colors.amber,
         ),
         body: BlocBuilder<BookBloc, BookState>(

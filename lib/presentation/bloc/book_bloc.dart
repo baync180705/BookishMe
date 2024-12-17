@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:bookishme/data/models/book_model.dart';
 import 'package:bookishme/data/services/api_services.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 
 part 'book_event.dart';
 part 'book_state.dart';
@@ -19,19 +20,16 @@ class BookBloc extends Bloc<BookEvent, BookState> {
   }
 
   FutureOr<void> _onFetch(FetchBooks event, Emitter<BookState> emit) async {
-    print(event.query);
-    print("in _onFetch");
     onFetchCount++;
     int startIndex = onFetchCount * 10;
     try {
       emit(BookLoading(fetchedBooks: _books));
-      print("Book Loading");
+      debugPrint("Book Loading");
       final result =
           await _bookServices.fetchBooksByStartIndex(startIndex, event.query) ??
               List.empty();
       _books.addAll(result);
-      print("prepared books");
-      print(_books);
+      debugPrint("prepared books");
       emit(BookLoaded(model: _books));
     } catch (error) {
       emit(BookError());
@@ -39,11 +37,9 @@ class BookBloc extends Bloc<BookEvent, BookState> {
   }
 
   FutureOr<void> _onSearch(SearchBooks event, Emitter<BookState> emit) async {
-    print(event.query);
-    print("in _onFetch");
     try {
       emit(BookLoading(fetchedBooks: _books));
-      print("Book Loading");
+      debugPrint("Book Loading");
       final result =
           await _bookServices.fetchBooksByStartIndex(0, event.query) ??
               List.empty();
