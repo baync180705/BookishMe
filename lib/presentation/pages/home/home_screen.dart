@@ -18,13 +18,13 @@ class _HomeScreenViewState extends State<HomeScreenView> {
   void initState() {
     super.initState();
 
-    context.read<BookBloc>().add(const FetchBooks(query: "book"));
+    context.read<BookBloc>().add(FetchBooks());
     _scrollController.addListener(() {
       if (_scrollController.position.pixels >=
           (_scrollController.position.maxScrollExtent-200)) {
         context
             .read<BookBloc>()
-            .add(const FetchBooks(query: "books"));
+            .add(FetchBooks());
       }
     });
   }

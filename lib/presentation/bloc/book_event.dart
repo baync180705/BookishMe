@@ -7,14 +7,7 @@ abstract class BookEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class FetchBooks extends BookEvent {
-  final String query;
-
-  const FetchBooks({required this.query});
-
-  @override
-  List<Object> get props => [query];
-}
+class FetchBooks extends BookEvent {}
 
 class SearchBooks extends BookEvent {
   final String query;

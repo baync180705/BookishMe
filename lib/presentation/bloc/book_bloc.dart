@@ -11,7 +11,6 @@ part 'book_state.dart';
 
 class BookBloc extends Bloc<BookEvent, BookState> {
   int onFetchCount = -1;
-  int onSearchCount = -1;
   final List<BookModel> _books = [];
   final ApiServices _bookServices = ApiServices();
   BookBloc() : super(BookLoaded(model: List.empty())) {
@@ -26,7 +25,7 @@ class BookBloc extends Bloc<BookEvent, BookState> {
       emit(BookLoading(fetchedBooks: _books));
       debugPrint("Book Loading");
       final result =
-          await _bookServices.fetchBooksByStartIndex(startIndex, event.query) ??
+          await _bookServices.fetchBooksByStartIndex(startIndex, 'book') ??
               List.empty();
       _books.addAll(result);
       debugPrint("prepared books");
